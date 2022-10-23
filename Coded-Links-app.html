@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Text List to Links</title>
+
+<style>
+html, body {height:100%;overflow:hidden;}
+.panel {float:left;margin-right:1px; width:49%;height:80%;display:block;overflow:scroll;}
+.wrap {padding:5px; max-width:100%;max-height:100%;}
+.panel.txt {width:45%;}
+.panel.lnks {width:54%;}
+.txtarea {width:100%;height:100%;}
+.links {padding-left:20px;}
+</style>
+
+</head>
+<body>
+<br>
+<center><h1>List of Plain Text URL's to Links</h1></center>
+<div class="wrap"></div>
+
+<div id="text_links" class="panel txt">
+<textarea class="txtarea" placeholder="Enter Links in Separate lines, and click anywhere on the page outside the text area."></textarea>
+</div>
+
+<div id="uri_links" class="panel lnks">
+<div class="links"><h2 class="header">The Links</h2><div class="all_links"></div></div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+ $(document).ready(function(){
+	var all_uri, uri_array = [], txt, uri;
+	$("#text_links textarea").on("change", function(){
+	html_code = "";
+	all_uri = $(this).val();
+	uri_array = all_uri.split("\n");
+	for(i=0;i<uri_array.length;i++){
+		html_code = html_code + '<a href="' + uri_array[i] + '" target="_blank">' + uri_array[i] + '</a><br>';
+	}
+	console.log(html_code);
+	$("#uri_links .links .all_links").html(html_code);
+	});
+});
+</script>
+
+
+</body>
+</html>
